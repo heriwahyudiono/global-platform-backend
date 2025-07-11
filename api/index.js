@@ -4,17 +4,12 @@ const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
 
-const corsOptions = {
-  origin: ['https://globalplatform.vercel.app'],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-
-app.use(cors(corsOptions)); // penting!
+// Izinkan semua origin
+app.use(cors());
 app.use(express.json());
 app.use('/api/payments', paymentRoutes);
 
-module.exports = app; // untuk Vercel, ekspor app, bukan listen()
+module.exports = app; // untuk deploy di Vercel
 // app.listen(5000, () => {
 //   console.log('✅ Server running on port 5000');
 // });
